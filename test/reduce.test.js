@@ -1,5 +1,5 @@
 const
-    { reduce, is } = require('../lib/portable-fp'),
+    { reduce } = require('../lib/portable-fp'),
     { testCurrying, sparseList } = require('./util'),
     { expect } = require('chai');
 
@@ -50,6 +50,8 @@ describe('reduce :: ((a, b) → a) → a → [b] → a', function() {
         const args = [true, false, {}, run, x => x, /x/, String, null, undefined, 4];
         args.map(arg => expect(reduce.bind(null, add, 0, arg)).throw(TypeError));
     });
+    
+    it('has arity of 3', () => expect(reduce).lengthOf(3));
     
     it('is curried', testCurrying(reduce, [add, init, input], output));
     

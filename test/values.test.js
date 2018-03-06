@@ -19,4 +19,5 @@ describe('values :: {k: v} → [v]', function() {
     });
     
     it('has arity of 1', () => expect(values).lengthOf(1));
+    
 });

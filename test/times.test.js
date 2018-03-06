@@ -11,6 +11,8 @@ describe('times :: (Number → a) → Number → [a]', function() {
         expect(times(dbl, seq.length)).eql(seq.map(dbl));
     });
     
+    it('has arity of 2', () => expect(times).lengthOf(2));
+    
     it('is curried', testCurrying(times, [identity, seq.length], seq)); 
     
 });

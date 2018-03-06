@@ -46,6 +46,8 @@ describe('map :: Functor f => (a → b) → f a → f b', function() {
         expect(count).eql(2);
     });
     
+    it('has arity of 2', () => expect(map).lengthOf(2));
+    
     it('is curried', testCurrying(map, [fn, arr], out));
     
 });

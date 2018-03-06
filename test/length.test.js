@@ -16,7 +16,7 @@ describe('length :: [a] → Number', function() {
     });
     
     it('returns the length of an arguments object', function() {
-        function args() { console.log(arguments); return arguments; }
+        function args() { return arguments; }
         expect(length(args())).eql(0);
         expect(length(args(1, 0, 5))).eql(3);
     });

@@ -76,7 +76,6 @@ describe.skip('[curry test generator]', function() {
             partialRuns = [],
             finishRuns = [];
         const curryMock = (prior = {idx: 0, a: 0, b: 0, c: 0}) => function(a, b, c) {
-            console.log(a, b, c, prior);
             prior.idx++;
             
             if(a && !prior.a) prior.a = prior.idx;
@@ -87,7 +86,6 @@ describe.skip('[curry test generator]', function() {
             for(i = 1; i <= prior.idx; i++) {
                 set.push(argNames.filter(key => prior[key] == i).join(''));
             }
-            console.log('adding set', set);
             const target = c ? finishRuns : partialRuns;
             target.push(set);
             
@@ -98,9 +96,6 @@ describe.skip('[curry test generator]', function() {
         }
         
         testCurrying(curryMock(), [1, 2, 3], 6)();
-        
-        console.log(partialRuns);
-        console.log(finishRuns);
     });
     
 });

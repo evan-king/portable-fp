@@ -52,6 +52,8 @@ describe('mapObjIndexed :: ((*, String, Object) → *) → Object → Object', f
         expect(count).eql(keys(obj).length);
     });
     
+    it('has arity of 2', () => expect(map).lengthOf(2));
+    
     it('is curried', testCurrying(mapObjIndexed, [fn, obj], mapped));
     
 });

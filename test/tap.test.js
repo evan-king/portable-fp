@@ -18,9 +18,11 @@ describe('tap :: (a → *) → a → a', function() {
         expect(inspect.arg).eql(5);
     });
     
-    it('return original argument, ignoring function return', function() {
+    it('returns original argument, ignoring function return', function() {
         expect(tap(inspect, 7)).eql(7);
     });
+    
+    it('has arity of 2', () => expect(tap).lengthOf(2));
     
     it('is curried', testCurrying(tap, [inspect, 1], 1));
     
