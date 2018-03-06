@@ -12,6 +12,14 @@ describe('values :: {k: v} → [v]', function() {
     it('returns (sparse) array values', function() {
         expect(values(sparseList)).eql(packedList);
     });
+
+    it('excludes prototype properties', function() {
+        function MyObject() { this.ownprop = 1; }
+        MyObject.prototype.protoprop = 2;
+        const obj = new MyObject();
+        
+        expect(values(obj)).eql([1]);
+    });
     
     it('returns empty array on invalid input', function() {
         const args = [true, false, {}, values, x => x, /x/, String, null, undefined, 4];

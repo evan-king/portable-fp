@@ -3,7 +3,7 @@ const
     { testCurrying, sparseList, packedList } = require('./util'),
     { expect } = require('chai');
 
-describe('keys :: {k: v} ? [k]', function() {
+describe('keysIn :: {k: v} ? [k]', function() {
     
     it('returns object keys in natural (defined) order', function() {
         expect(keysIn({b: 1, a: 2, c: 3})).eql(['b', 'a', 'c']);
