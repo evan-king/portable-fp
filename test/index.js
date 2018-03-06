@@ -31,9 +31,14 @@ describe('API', function() {
 
 with(R) {
 
-
-
+describe('sum :: [Number] → Number', function() {
     
+    it('adds numbers in an array', function() {
+        expect(sum([1, 2, 3])).eql(6);
+    });
+    
+});
+
 
 describe('find :: (a → Boolean) → [a] → a | undefined', function() {
     

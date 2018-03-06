@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha test/index.js test/*.test.js",
     "coverage": "istanbul cover --report html -x dist/ _mocha -- test/**/*.js",
-    "travis": "istanbul cover --report lcovonly -x dist/ _mocha",
+    "travis": "istanbul cover --report lcovonly -x dist/ _mocha  test/index.js test/*.test.js",
     "posttravis": "istanbul check-coverage --statements $npm_package_config_min_coverage --branches $npm_package_config_min_coverage --lines $npm_package_config_min_coverage"
   },
   "config": {

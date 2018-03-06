@@ -39,9 +39,9 @@ describe('take :: Number → [a] → [a]', function() {
     });
     
     // Known divergence from Ramda behavior (these tests would fail):
-    //  - expect(slice(0, Infinity, String)).eql('');
-    //  - expect(slice(0, Infinity, slice)).eql([]);
-    //  - expect(slice(0, Infinity, x => x)).eql([]);
+    //  - expect(take(3, String)).eql('');
+    //  - expect(take(3, slice)).eql([]);
+    //  - expect(take(3, x => x)).eql([]);
     
     it('returns empty array on (some) invalid defined input', function() {
         const

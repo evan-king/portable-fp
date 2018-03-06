@@ -1,6 +1,6 @@
 const
     { map, keys, values, identity } = require('../lib/portable-fp'),
-    { testCurrying } = require('./util'),
+    { testCurrying, sparseList } = require('./util'),
     { expect } = require('chai');
 
 describe('map :: Functor f => (a → b) → f a → f b', function() {
@@ -15,12 +15,25 @@ describe('map :: Functor f => (a → b) → f a → f b', function() {
         expect(map(fn, arr)).eql(out);
     });
     
+    it('leaves sparse arrays unpacked', function() {
+        const collected = [];
+        expect(map(identity, sparseList)).eql(sparseList);
+    });
+    
     it('maps objects', function() {
         expect(map(identity, {})).eql({});
         expect(map(identity, obj)).eql(obj);
         const mapped = map(fn, obj);
         expect(keys(mapped)).eql(Object.keys(obj));
         expect(values(mapped)).eql(out);
+    });
+
+    it('excludes prototype properties', function() {
+        function MyObject() { this.ownprop = 1; }
+        MyObject.prototype.protoprop = 2;
+        const obj = new MyObject();
+        
+        expect(map(x => x, obj)).eql({ownprop: 1});
     });
     
     it('passes only values', function() {

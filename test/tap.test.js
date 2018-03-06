@@ -22,11 +22,6 @@ describe('tap :: (a → *) → a → a', function() {
         expect(tap(inspect, 7)).eql(7);
     });
     
-    // cannot support unless implementing clone, which is too much to fit in portable-fp
-    it.skip('disallows mutation of argument', function() {
-        expect(tap(obj => obj.b = 2, {a: 1})).eql({a: 1});
-    });
-    
     it('is curried', testCurrying(tap, [inspect, 1], 1));
     
 });

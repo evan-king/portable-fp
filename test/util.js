@@ -105,4 +105,17 @@ describe.skip('[curry test generator]', function() {
     
 });
 
+function sparse() {
+    const arr = [1, 2, 3];
+    arr[5] = 5;
+    arr[9] = 9;
+    return arr;
+}
+
+function pack(list) {
+    return [1, 2, 3, 5, 9];
+}
+
 exports.testCurrying = testCurrying;
+exports.sparseList = Object.freeze(sparse());
+exports.packedList = Object.freeze(pack(exports.sparseList));

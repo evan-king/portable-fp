@@ -1,10 +1,11 @@
 const
-    { reduce, add } = require('../lib/portable-fp'),
-    { testCurrying } = require('./util'),
+    { reduce, is } = require('../lib/portable-fp'),
+    { testCurrying, sparseList } = require('./util'),
     { expect } = require('chai');
 
 describe('reduce :: ((a, b) → a) → a → [b] → a', function() {
     const
+        add = (a, b) => a + b,
         init = 5
         input = [1, 2, 4, 8],
         output = init + input.reduce(add),
@@ -25,6 +26,11 @@ describe('reduce :: ((a, b) → a) → a → [b] → a', function() {
         expect(result).eql(output);
     });
     
+    it('does not skip sparse array indexes', function() {
+        const collected = [];
+        expect(reduce(add, 0, sparseList)).eql(NaN);
+    });
+    
     it('supports iterators', function() {
         const iter = input.keys();
         expect(iter.length).eql(undefined);
@@ -33,6 +39,16 @@ describe('reduce :: ((a, b) → a) → a → [b] → a', function() {
         
         const gen = function*() { yield 1; yield 2; yield 3; };
         expect(reduce(add, 0, gen())).eql(6);
+    });
+    
+    it('supports arguments objects', function() {
+        function fn() { return arguments; }
+        expect(reduce(add, 0, fn(1, 2, 3))).eql(6);
+    });
+    
+    it('throws error on non-list input', function() {
+        const args = [true, false, {}, run, x => x, /x/, String, null, undefined, 4];
+        args.map(arg => expect(reduce.bind(null, add, 0, arg)).throw(TypeError));
     });
     
     it('is curried', testCurrying(reduce, [add, init, input], output));

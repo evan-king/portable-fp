@@ -36,7 +36,7 @@ describe('drop :: [a] → [a]', function() {
     });
     
     // Known divergence from Ramda behavior (these tests would fail):
-    //  - expect(slice(0, Infinity, String)).eql('');
+    //  - expect(drop(0, String)).eql('');
     
     it('returns empty array on (some) invalid defined input', function() {
         const

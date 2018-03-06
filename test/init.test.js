@@ -23,12 +23,25 @@ describe('init :: [a] → [a]', function() {
     
     it('returns all but the last value of an arguments object', function() {
         function fn() {return arguments};
-        expect(init(fn([]))).eql([]);
-        expect(init(fn([1, 2, 3]))).eql([1, 2]);
+        expect(init(fn())).eql([]);
+        expect(init(fn(1))).eql([]);
+        expect(init(fn(1, 2))).eql([1]);
+        expect(init(fn(1, 2, 3))).eql([1, 2]);
     });
     
-    // Ramda returns an empty array for all invalid input other than null and undefined
-    it.skip('normalizes input');
+    it('throws error when given null or undefined', function() {
+        const run = arg => () => init(arg);
+        expect(run(null)).throw(TypeError);
+        expect(run(undefined)).throw(TypeError);
+    });
+    
+    // Known divergence from Ramda behavior (these tests would fail):
+    //  - expect(init(String)).eql('');
+    
+    it('returns empty array on (some) invalid defined input', function() {
+        const args = [true, false, {}, init, x => x, /x/];
+        args.map(arg => expect(init(arg)).an('array').eql([]));
+    });
     
     it('has arity of 1', () => expect(init).lengthOf(1));
     

@@ -36,8 +36,9 @@ use.
 | **Size** | ~270kb, ~45kb minified | ~5kb complete and unminified | ~100 bytes |
 | **Curried** | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | **Robust API** | :heavy_check_mark: |  -  | :x: |
-| **Optimal Performance** | :heavy_check_mark: |  -  |  -  |
+| **Optimal Performance** | :heavy_check_mark: | :x: | :x: |
 | **Immutable Behavior** | :heavy_check_mark: | :heavy_check_mark: |  -  |
+| **Cross-Platform Tested** | :heavy_check_mark: |  -  | :x: |
 
 ## Basic Usage
 

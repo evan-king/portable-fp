@@ -1,19 +1,33 @@
 const
     { keys } = require('../lib/portable-fp'),
-    { testCurrying } = require('./util'),
+    { testCurrying, sparseList, packedList } = require('./util'),
     { expect } = require('chai');
 
 describe('keys :: {k: v} ? [k]', function() {
-    const
-        obj = {b: 1, a: 2, c: 3},
-        arr = [1, 2];
-    arr[3] = 4;
     
     it('returns object keys in natural (defined) order', function() {
-        expect(keys(obj)).eql(['b', 'a', 'c']);
+        expect(keys({b: 1, a: 2, c: 3})).eql(['b', 'a', 'c']);
     });
     
     it('returns (sparse) array keys, as strings', function() {
-        expect(keys(arr)).eql(['0', '1', '3']);
+        const out = [];
+        for(const k in sparseList) out.push(String(k));
+        expect(keys(sparseList)).eql(out);
     });
+
+    it('excludes prototype properties', function() {
+        function MyObject() { this.ownprop = 1; }
+        MyObject.prototype.protoprop = 2;
+        const obj = new MyObject();
+        
+        expect(keys(obj)).eql(['ownprop']);
+    });
+    
+    it('returns empty array on invalid input', function() {
+        const args = [true, false, {}, keys, x => x, /x/, String, null, undefined, 4];
+        args.map(arg => expect(keys(arg)).an('array').eql([]));
+    });
+    
+    it('has arity of 1', () => expect(keys).lengthOf(1));
+    
 });
