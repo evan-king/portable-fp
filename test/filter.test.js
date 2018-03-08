@@ -30,7 +30,11 @@ describe('filter :: Filterable f => (a → Boolean) → f a → f a', function()
     // this Ramda behavior would be complicated to replicate and arguably undesirable
     it.skip('inflates sparse arrays', function() {
         //expect(filter(t, sparseList)).eql(sparseList);
-        expect(filter(x => x !== 1, sparseList)).eql(sparseList.slice(1));
+        expect(filter(x => x !== sparseList[0], sparseList)).eql(sparseList.slice(1));
+    });
+    it('collapses sparse arrays', function() {
+        expect(filter(t, sparseList)).eql(packedList);
+        expect(filter(x => x !== packedList[0], sparseList)).eql(packedList.slice(1));
     });
     
     it('returns empty array on invalid input', function() {
