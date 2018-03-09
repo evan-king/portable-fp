@@ -1,6 +1,5 @@
 const
     { identity } = require('../lib/portable-fp'),
-    { testCurrying } = require('./util'),
     { expect } = require('chai');
 
 describe('identity :: a → a', function() {

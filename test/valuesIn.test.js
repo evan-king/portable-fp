@@ -1,6 +1,6 @@
 const
     { valuesIn } = require('../lib/portable-fp'),
-    { testCurrying, sparseList, packedList } = require('./util'),
+    { sparseList, packedList } = require('./util'),
     { expect } = require('chai');
 
 describe('valuesIn :: {k: v} → [v]', function() {

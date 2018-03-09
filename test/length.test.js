@@ -1,6 +1,5 @@
 const
     { length } = require('../lib/portable-fp'),
-    { testCurrying, sparseList, packedList } = require('./util'),
     { expect } = require('chai');
 
 describe('length :: [a] → Number', function() {

@@ -31,6 +31,33 @@ describe('API', function() {
 
 with(R) {
 
+describe('contains', function() {
+    
+    it('identifies whether element is in list', function() {
+        expect(contains(1, [1, 2])).true;
+        expect(contains(3, [1, 2])).false;
+    });
+    
+    it('identifies whether element is in object', function() {
+        expect(contains(1, {a: 1, b: 2})).true;
+        expect(contains(3, {a: 1, b: 2})).false;
+    });
+    
+});
+
+// defaultTo
+// head
+// is
+// last
+// match
+// pick
+// prop
+// range
+// reverse
+// tail
+
+
+
 describe('sum :: [Number] → Number', function() {
     
     it('adds numbers in an array', function() {
@@ -38,7 +65,6 @@ describe('sum :: [Number] → Number', function() {
     });
     
 });
-
 
 describe('find :: (a → Boolean) → [a] → a | undefined', function() {
     

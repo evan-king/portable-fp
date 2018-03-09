@@ -62,6 +62,8 @@ describe('nAry :: Number → (* → a) → (* → a)', function() {
         expect(nAry(2, natural3).name).eql('natural3');
     });
     
+    it('has arity of 2', () => expect(nAry).lengthOf(2));
+    
     it('is curried', testCurrying(nAry, [4, natural0], fn => expect(fn.name).eql(natural0.name)));
     
 });

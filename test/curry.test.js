@@ -67,4 +67,6 @@ describe('curry :: (* → a) → (* → a)', function() {
         expect(cop.name).eql(op.name);
     });
     
+    it('has arity of 1', () => expect(curry).lengthOf(1));
+    
 });

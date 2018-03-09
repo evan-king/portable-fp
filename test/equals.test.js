@@ -1,6 +1,6 @@
 const
     { equals } = require('../lib/portable-fp'),
-    { testCurrying, sparseList, packedList } = require('./util'),
+    { testCurrying } = require('./util'),
     { expect } = require('chai');
 
 describe('equals', function() {
@@ -34,5 +34,9 @@ describe('equals', function() {
     
     // Way beyond the scope of this package - use Ramda
     it.skip('matches arrays and objects by matching type and contents');
+    
+    it('has arity of 2', () => expect(equals).lengthOf(2));
+    
+    it('is curried', testCurrying(equals, [5, 5], true));
     
 });

@@ -30,8 +30,9 @@ describe('invoker :: Number → String → (a → b → … → n → Object →
             expect(invoker(1, 'method')(1, testObj, 2)).eql([1, 5]);
         });
         
-        it('is auto-curried', function() {
-            expect(invoker(1, 'method')(1)).a('function');
+        it('is curried when it takes extra arguments', function() {
+            const gather = invoker(3, 'method');
+            testCurrying(gather, [1, 2, 3, testObj], [1, 2, 3, 5]);
         });
         
     });
@@ -43,5 +44,7 @@ describe('invoker :: Number → String → (a → b → … → n → Object →
     });
     
     it('has arity of 2', () => expect(invoker).lengthOf(2));
+    
+    it('is curried', testCurrying(invoker, [0, 'method'], v => expect(v(testObj)).eql([5])));
     
 });

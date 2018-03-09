@@ -39,6 +39,8 @@ describe('clamp :: Ord a => a → a → a → a', function() {
         expect(clampDate(e)).eql(d);
     });
     
+    it('has arity of 3', () => expect(clamp).lengthOf(3));
+    
     it('is curried', testCurrying(clamp, [1, 2, 3], 2));
     
 });
