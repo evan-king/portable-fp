@@ -28,6 +28,7 @@ node_js:
 #  - npm install browserify testem coveralls@2.10.0
 
 script:
+  - npm run build
   - npm run coverage
 #  - $(npm bin)/testem ci
 
