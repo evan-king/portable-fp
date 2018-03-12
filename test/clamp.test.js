@@ -1,5 +1,5 @@
 const
-    { clamp } = require('../lib/portable-fp'),
+    { clamp } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

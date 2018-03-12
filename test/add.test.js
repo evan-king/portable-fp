@@ -1,5 +1,5 @@
 const
-    { add } = require('../lib/portable-fp'),
+    { add } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 
@@ -11,21 +11,21 @@ describe('add :: Number → Number → Number', function() {
         expect(add(2, '0xFF')).eql(257);
     });
     
-    it('treats true as 1', function() {
-        expect(add(2, true)).eql(3);
-    });
-    
-    it('treats null, false, and empty string as 0', function() {
+    it('handles inputs castable to number', function() {
         expect(add(null, 2)).eql(2); 
         expect(add(2, null)).eql(2); 
         expect(add(2, false)).eql(2);
         expect(add(2, '')).eql(2);
+        expect(add(2, [])).eql(2);
+        
+        expect(add(2, true)).eql(3);
     });
     
-    it('retuns NaN for all other inputs', function() {
+    it('treats all other inputs as NaN', function() {
         expect(add(2, NaN)).eql(NaN); 
         expect(add(NaN, 2)).eql(NaN); 
         expect(add(2, 'a')).eql(NaN); 
+        expect(add(2, /x/)).eql(NaN); 
         expect(add(2, {})).eql(NaN); 
         expect(add(2, String)).eql(NaN); 
         expect(add(2, x => x)).eql(NaN); 

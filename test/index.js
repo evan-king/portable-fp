@@ -1,89 +1,96 @@
+#!/usr/bin/env node
+
+"use strict";
+
+/**
+ * Unit test runner
+ * Bootstraps unit test environment and
+ * runs or watches tests (with live filtering).
+ * 
+ * @author Evan King
+ */
+
 const
-    R = require('../lib/portable-fp'),
-    { testCurrying } = require('./util'),
-    { expect } = require('chai');
+    fs = require('fs'),
+    path = require('path'),
+    glob = require('glob'),
+    cluster = require('cluster'),
+    Mocha = require('mocha'),
+    Module = require('module'),
+    basepath = path.join(__dirname, '../');
+
+const
+    hasFlag = flag => process.argv.slice(2).filter(arg => arg == flag).length > 0,
+    inject = src => (key, child) => resolvePath(key == 'portable-fp' ? src : key, child),
+    resolvePath = Module._resolveFilename,
+    applyTests = cb => glob('test/*.test.js', (err, tests) => cb(tests));
 
 
-
-describe('API', function() {
+// watch all js files, dispatching operation on a forked process
+function watchTests() {
+    if(cluster.isWorker) {
+        return process.once('message', dispatch.bind(null));
+    }
     
-    it('names all functions to match their API names', function() {
-        Object.keys(R).map(key => expect(R[key].name).eql(key));
-    });
+    let runner = null;
+    function readyRunner() {
+        runner = cluster.fork();
+        runner.on('exit', readyRunner);
+    }
+    readyRunner();
     
-    it('is immutable', function() {
-        const mutate = (obj, name) => {
-            // strict mode throws TypeError, else silently ignored
-            expect(obj._blah, name).eql(undefined);
-            try {
-                obj._blah = 5;
-            } catch(ex) {
-                expect(ex, name).instanceOf(TypeError);
-            }
-            expect(obj._blah, name).eql(undefined);
-        }
-        
-        mutate(R, 'API');
-        R.mapObjIndexed(mutate, R);
-    });
+    function run(suites) {
+        if(!runner) return; // tests in progress
+        runner.send(suites);
+        runner = null;
+    }
     
-});
-
-with(R) {
-
-describe('contains', function() {
-    
-    it('identifies whether element is in list', function() {
-        expect(contains(1, [1, 2])).true;
-        expect(contains(3, [1, 2])).false;
-    });
-    
-    it('identifies whether element is in object', function() {
-        expect(contains(1, {a: 1, b: 2})).true;
-        expect(contains(3, {a: 1, b: 2})).false;
-    });
-    
-});
-
-// defaultTo
-// head
-// is
-// last
-// match
-// pick
-// prop
-// range
-// reverse
-// tail
-
-
-
-describe('sum :: [Number] → Number', function() {
-    
-    it('adds numbers in an array', function() {
-        expect(sum([1, 2, 3])).eql(6);
-    });
-    
-});
-
-describe('find :: (a → Boolean) → [a] → a | undefined', function() {
-    
-    it('finds first value in array satisftying match function', function() {
-        const arr = [1, 0.5, 2, -3, 4];
-        
-    });
-    
-});
-
-describe('findIndex :: (a → Boolean) → [a] → Number', function() {
-    
-    it('finds first value in array satisftying match function', function() {
-        const arr = [1, 0.5, 2, -3, 4];
-        
-    });
-    
-});
-
-
-    
+    require('chokidar')    
+        .watch(['lib', 'test'].map(d => `${basepath+d}/**/*.js`), {ignoreInitial: true})
+        .on('all', (evt, file) => applyTests(run));
 }
+
+// build and inject the code path being tested
+function build() {
+    const
+        orig = `${basepath}lib/portable-fp.js`,
+        dist = `${basepath}dist/portable-fp.min.js`;
+    
+    if(hasFlag('--build')) {
+        const { minify } = require('uglify-es');
+        const opts = {
+            compress: true,
+            mangle: true,
+            sourceMap: {filename: dist+'.map'}
+        };
+        const { code, map } = minify(fs.readFileSync(orig, 'utf8'), opts);
+        try { fs.mkdirSync(basepath+'/dist'); } catch(ex) {}
+        fs.writeFileSync(dist, code);
+        fs.writeFileSync(dist+'.map', map);
+        Module._resolveFilename = inject(dist);
+    } else {
+        Module._resolveFilename = inject(orig);
+    }
+}
+
+// execute build/test
+function dispatch(suites) {
+    build();
+    
+    const mocha = new Mocha();
+    mocha.files = suites;
+    
+    if(hasFlag('--coverage')) {
+        const Reporter = require('mocha/lib/reporters/min');
+        mocha.reporter(Reporter);
+        mocha.useColors(false);
+    }
+    
+    const runner = mocha.run(process.exit);
+    process.on('SIGINT', () => (runner.abort(), process.exit(1)));
+}
+
+// run
+hasFlag('--watch')
+    ? watchTests()
+    : applyTests(dispatch);

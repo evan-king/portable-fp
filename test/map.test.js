@@ -1,5 +1,5 @@
 const
-    { map, keys, values, identity } = require('../lib/portable-fp'),
+    { map, keys, values, identity } = require('portable-fp'),
     { testCurrying, sparseList } = require('./util'),
     { expect } = require('chai');
 

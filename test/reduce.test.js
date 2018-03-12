@@ -1,5 +1,5 @@
 const
-    { reduce } = require('../lib/portable-fp'),
+    { reduce } = require('portable-fp'),
     { testCurrying, sparseList } = require('./util'),
     { expect } = require('chai');
 

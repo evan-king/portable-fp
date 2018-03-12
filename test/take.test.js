@@ -1,5 +1,5 @@
 const
-    { take } = require('../lib/portable-fp'),
+    { take } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

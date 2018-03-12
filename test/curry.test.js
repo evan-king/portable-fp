@@ -1,5 +1,5 @@
 const
-    { curry } = require('../lib/portable-fp'),
+    { curry } = require('portable-fp'),
     { expect } = require('chai');
 
 describe('curry :: (* → a) → (* → a)', function() {

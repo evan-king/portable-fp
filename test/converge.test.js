@@ -1,6 +1,6 @@
 const
     // TODO: cut down on API usage for better portability of suite in cherry-picked applications
-    { converge, times, range, sum, length, slice } = require('../lib/portable-fp'),
+    { converge, times, range, sum, length, slice } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

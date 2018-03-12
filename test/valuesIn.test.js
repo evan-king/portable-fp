@@ -1,5 +1,5 @@
 const
-    { valuesIn } = require('../lib/portable-fp'),
+    { valuesIn } = require('portable-fp'),
     { sparseList, packedList } = require('./util'),
     { expect } = require('chai');
 

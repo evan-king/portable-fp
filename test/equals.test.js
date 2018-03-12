@@ -1,5 +1,5 @@
 const
-    { equals } = require('../lib/portable-fp'),
+    { equals } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

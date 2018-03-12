@@ -1,5 +1,5 @@
 const
-    { identity } = require('../lib/portable-fp'),
+    { identity } = require('portable-fp'),
     { expect } = require('chai');
 
 describe('identity :: a → a', function() {

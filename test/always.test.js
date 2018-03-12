@@ -1,5 +1,5 @@
 const
-    { always } = require('../lib/portable-fp'),
+    { always } = require('portable-fp'),
     { expect } = require('chai');
 
 describe('always :: a → (* → a)', function() {

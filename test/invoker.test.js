@@ -1,5 +1,5 @@
 const
-    { invoker, range } = require('../lib/portable-fp'),
+    { invoker, range } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

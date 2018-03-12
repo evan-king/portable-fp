@@ -1,5 +1,5 @@
 const
-    { nAry, sum } = require('../lib/portable-fp'),
+    { nAry, sum } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

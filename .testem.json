@@ -1,0 +1,6 @@
+{
+    "framework": "mocha",
+    "before_tests":  "$(npm bin)/browserify test/*.test.js -o dist/test.js -t ./test/client",
+    "src_files": [ "dist/portable-fp.min.js", "dist/test.js" ],
+    "on_exit":  "rm dist/test.js"
+}

@@ -1,5 +1,5 @@
 const
-    { length } = require('../lib/portable-fp'),
+    { length } = require('portable-fp'),
     { expect } = require('chai');
 
 describe('length :: [a] → Number', function() {

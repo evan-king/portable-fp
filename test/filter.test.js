@@ -1,5 +1,5 @@
 const
-    { filter } = require('../lib/portable-fp'),
+    { filter } = require('portable-fp'),
     { testCurrying, sparseList, packedList } = require('./util'),
     { expect } = require('chai');
 
@@ -38,7 +38,7 @@ describe('filter :: Filterable f => (a → Boolean) → f a → f a', function()
     });
     
     it('returns empty array on invalid input', function() {
-        const args = [true, false, null, undefined, 4];
+        const args = [true, false, null, undefined, /x/, 4];
         args.map(arg => expect(filter(t, arg)).eql([]));
     });
     

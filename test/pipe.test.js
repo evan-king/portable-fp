@@ -1,5 +1,5 @@
 const
-    { pipe, slice } = require('../lib/portable-fp'),
+    { pipe, slice } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

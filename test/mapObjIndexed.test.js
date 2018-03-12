@@ -1,5 +1,5 @@
 const
-    { mapObjIndexed, map, keys, values } = require('../lib/portable-fp'),
+    { mapObjIndexed, map, keys, values } = require('portable-fp'),
     { testCurrying, sparseList, packedList } = require('./util'),
     { expect } = require('chai');
 

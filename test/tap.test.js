@@ -1,5 +1,5 @@
 const
-    { tap } = require('../lib/portable-fp'),
+    { tap } = require('portable-fp'),
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 

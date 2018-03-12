@@ -1,6 +1,6 @@
 
 const
-    { sum, length } = require('../lib/portable-fp'),
+    { sum, length } = require('portable-fp'),
     expect = require('chai').expect;
 
 // curryPermutations :: [1, 2, 3] -> [[1, 2, 3]], [[1, 2], [3]], [[1], [2], [3]], ... ]

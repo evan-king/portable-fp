@@ -39,6 +39,7 @@ use.
 | **Optimal Performance** | :heavy_check_mark: | :x: | :x: |
 | **Immutable Behavior** | :heavy_check_mark: | :heavy_check_mark: |  -  |
 | **Cross-Platform Tested** | :heavy_check_mark: |  -  | :x: |
+| **ES5 Environment Support** | :heavy_check_mark: | :x: |  -  |
 
 ## Basic Usage
 
@@ -50,10 +51,10 @@ for pulling in 3rd-party code, or publishing small packages with minimal depende
 footprint.
 
 As alternative to usage as a dependency, the content of `lib/portable-fp.js` can
-be copy-pasted directly into the project.  That code builds two internal objects,
-`core` and `optional`, containing the implementations of all supported API methods.
-The latter methods have no interdependencies and can all be removed if unused, whereas
-core ones can only be removed if no optional methods remain that use them.
+be copy-pasted directly into the project.  That code returns an object containing
+the implementations of all supported API methods.  There are no interdependencies
+so any unused API methods can be removed, along with any internal methods unneeded
+by the remainder.
 
 ## Documentation
 
