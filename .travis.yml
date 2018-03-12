@@ -1,17 +1,17 @@
-os:
-  - osx
-  - linux
-
-osx_image: xcode8
-
-addons:
-  firefox: latest
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable fluxbox
-      - xvfb
+#os:
+#  - osx
+#  - linux
+#
+#osx_image: xcode8
+#
+#addons:
+#  firefox: latest
+#  apt:
+#    sources:
+#      - google-chrome
+#    packages:
+#      - google-chrome-stable fluxbox
+#      - xvfb
 
 language: node_js
 
@@ -20,16 +20,17 @@ node_js:
   - 7
   - 8
 
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3
-  - fluxbox >/dev/null 2>&1 &
+#before_script:
+#  - "export DISPLAY=:99.0"
+#  - "sh -e /etc/init.d/xvfb start"
+#  - sleep 3
+#  - fluxbox >/dev/null 2>&1 &
+#  - npm install browserify testem coveralls@2.10.0
 
 script:
- - npm run coverage
- - npm run client
+  - npm run coverage
+#  - $(npm bin)/testem ci
 
 after_script:
- - npm install coveralls@2.10.0
- - cat ./coverage/lcov.info | coveralls
+  - npm install coveralls@2.10.0
+  - cat ./coverage/lcov.info | coveralls
