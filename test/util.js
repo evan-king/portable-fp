@@ -122,10 +122,15 @@ const variety = {
     f: String,
     g: NaN,
     h: new Date(2017),
-    i: new Date(2018),
-    j: '',
+    i: new Date(2018, 1, 1),
+    j: new String(),
+    k: new Boolean(true),
+    l: new Boolean(false),
+    m: new Number(Infinity),
 };
 
+// Duplication of variety, replacing objects with primitive equivalents
+// where possible (which should still be considered equal)
 const dup = {
     a: null,
     b: 0,
@@ -134,9 +139,12 @@ const dup = {
     e: undefined,
     f: String,
     g: NaN,
-    h: new Date(2017),
-    i: new Date(2018),
+    h: (new Date(2017)).valueOf(),
+    i: (new Date(2018, 1, 1)).valueOf(),
     j: '',
+    k: true,
+    l: false,
+    m: Infinity,
 };
 
 

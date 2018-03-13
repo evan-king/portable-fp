@@ -5,10 +5,15 @@ const
 
 describe('equals', function() {
     
-    it('matches primitives and simple types by exact value', function() {
-        for(const k1 in varietyList.keys()) {
-            for(const k2 in varietyListCopy.keys()) {
-                expect(equals(varietyList[k1], varietyListCopy[k2])).eql(k1 === k2);
+    it('matches primitives and simple types by value', function() {
+        expect(equals(new Boolean(true), true)).eql(true);
+        expect(equals(new Boolean(false), false)).eql(true);
+        for(const k1 of varietyList.keys()) {
+            for(const k2 of varietyListCopy.keys()) {
+                expect(
+                    equals(varietyList[k1], varietyListCopy[k2]),
+                    `${varietyList[k1]} ${varietyList[k2]}`
+                ).eql(k1 === k2);
             }
         }
     });
