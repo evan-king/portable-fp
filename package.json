@@ -1,6 +1,6 @@
 {
   "name": "portable-fp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Functional programming support library compact enough for copy-paste inclusion",
   "main": "lib/portable-fp.js",
   "scripts": {
