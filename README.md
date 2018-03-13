@@ -69,7 +69,7 @@ after such list stabilizes and is fully tested.
 
 
 [version-url]: https://github.com/evan-king/portable-fp/releases
-[version-img]: https://img.shields.io/github/release/evan-king/portable-fp.svg?style=flat
+[version-img]: https://img.shields.io/github/tag/evan-king/portable-fp.svg?style=flat
 
 [npmjs-url]: https://www.npmjs.com/package/portable-fp
 [npmjs-img]: https://img.shields.io/npm/v/portable-fp.svg?style=flat
