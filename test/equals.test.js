@@ -10,8 +10,7 @@ describe('equals', function() {
             for(const k2 in varietyListCopy.keys()) {
                 expect(equals(varietyList[k1], varietyListCopy[k2])).eql(k1 === k2);
             }
-            
-        };
+        }
     });
     
     describe('diverging from Ramda behavior', function() {

@@ -1,6 +1,6 @@
 const
     R = require('portable-fp'),
-    { testCurrying } = require('./util'),
+    { testCurrying, sparseList, packedList, varietyList, varietyListCopy, varietyObj, varietyObjCopy } = require('./util'),
     { expect } = require('chai');
 
 
@@ -36,29 +36,6 @@ describe('dist', function() {
 const args = [null, undefined, false, true, '', 'a', '0xFF', 5, String, /x/, x => x, [], {}];
 
 with(R) {
-
-describe('contains', function() {
-    
-    it('identifies whether element is in list', function() {
-        expect(contains(1, [1, 2])).true;
-        expect(contains(3, [1, 2])).false;
-    });
-    
-    it('identifies whether element is in object', function() {
-        expect(contains(1, {a: 1, b: 2})).true;
-        expect(contains(3, {a: 1, b: 2})).false;
-    });
-    
-    it('handles invalid input', function() {
-        const inputs = [null, undefined, false, true, '', 'a', 5, String, /x/, x => x];
-        inputs.map(v => expect(contains(1, v)).eql(false));
-    });
-    
-    it('has arity of 2', () => expect(filter).lengthOf(2));
-    
-    it('is curried', testCurrying(contains, [1, [1, 2]], true));
-    
-});
 
 // defaultTo
 // head
