@@ -24,6 +24,16 @@ describe('keys :: {k: v} ? [k]', function() {
         expect(keys(obj)).eql(['ownprop']);
     });
     
+    describe('diverging from Ramda behavior', function() {
+        
+        it('returns string characters', function() {
+            expect(keys('')).eql([]);
+            expect(keys('1')).eql(['0']);
+            expect(keys('bl ah')).eql([0, 1, 2, 3, 4].map(n => n.toString()));
+        });
+        
+    });
+    
     it('returns empty array on invalid input', function() {
         const args = [true, false, {}, keys, x => x, /x/, String, null, undefined, 4];
         args.map(arg => expect(keys(arg)).an('array').eql([]));

@@ -36,7 +36,7 @@ use.
 | **Size** | ~270kb, ~45kb minified | ~5kb, ~2.5kb minified | ~100 bytes |
 | **Curried** | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | **Robust API** | :heavy_check_mark: |  -  | :x: |
-| **Optimal Performance** | :heavy_check_mark: | :x: | :x: |
+| **Optimal Performance** | :x: | :x: | :x: |
 | **Immutable Behavior** | :heavy_check_mark: | :heavy_check_mark: |  -  |
 | **Cross-Platform Tested** | :heavy_check_mark: |  -  | :x: |
 | **ES5 Environment Support** | :heavy_check_mark: | :x: |  -  |

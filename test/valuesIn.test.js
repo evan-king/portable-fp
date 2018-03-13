@@ -12,6 +12,10 @@ describe('valuesIn :: {k: v} → [v]', function() {
     it('returns (sparse) array values', function() {
         expect(valuesIn(sparseList)).eql(packedList);
     });
+    
+    it('returns string characters', function() {
+        expect(valuesIn('ab')).eql(['a', 'b']);
+    });
 
     it('includes prototype properties', function() {
         function MyObject() { this.ownprop = 1; }

@@ -15,6 +15,10 @@ describe('keysIn :: {k: v} ? [k]', function() {
         expect(out).lengthOf(packedList.length);
         expect(keysIn(sparseList)).eql(out);
     });
+    
+    it('returns string keys', function() {
+        expect(keysIn('ab')).eql(['0', '1']);
+    });
 
     it('includes prototype properties', function() {
         function MyObject() { this.ownprop = 1; }

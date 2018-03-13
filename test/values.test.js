@@ -21,6 +21,16 @@ describe('values :: {k: v} → [v]', function() {
         expect(values(obj)).eql([1]);
     });
     
+    describe('diverging from Ramda behavior', function() {
+        
+        it('returns characters in a string', function() {
+            expect(values('')).eql([]);
+            expect(values('1')).eql(['1']);
+            expect(values('bl ah')).eql(['b', 'l', ' ', 'a', 'h']);
+        });
+        
+    });
+    
     it('returns empty array on invalid input', function() {
         const args = [true, false, {}, values, x => x, /x/, String, null, undefined, 4];
         args.map(arg => expect(values(arg)).an('array').eql([]));
