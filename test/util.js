@@ -1,6 +1,6 @@
 
 const
-    { sum, length } = require('portable-fp'),
+    { sum, length, values } = require('portable-fp'),
     expect = require('chai').expect;
 
 // curryPermutations :: [1, 2, 3] -> [[1, 2, 3]], [[1, 2], [3]], [[1], [2], [3]], ... ]
@@ -111,6 +111,39 @@ function pack(list) {
     return [1, 2, 3, 5, 9];
 }
 
+// The set of inputs both distinct amongst themselves and matcheable by equals,
+// for use by tests of equals and other functions expected to follow its spec.
+const variety = {
+    a: null,
+    b: 0,
+    c: 1,
+    d: '1',
+    e: undefined,
+    f: String,
+    g: NaN,
+    h: new Date(2017),
+    i: new Date(2018),
+    j: '',
+};
+
+const dup = {
+    a: null,
+    b: 0,
+    c: 1,
+    d: '1',
+    e: undefined,
+    f: String,
+    g: NaN,
+    h: new Date(2017),
+    i: new Date(2018),
+    j: '',
+};
+
+
 exports.testCurrying = testCurrying;
 exports.sparseList = Object.freeze(sparse());
 exports.packedList = Object.freeze(pack(exports.sparseList));
+exports.varietyObj = variety;
+exports.varietyObjCopy = dup;
+exports.varietyList = values(variety);
+exports.varietyListCopy = values(dup);
