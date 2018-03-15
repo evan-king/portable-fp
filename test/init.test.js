@@ -39,7 +39,7 @@ describe('init :: [a] → [a]', function() {
     //  - expect(init(String)).eql('');
     
     it('returns empty array on (some) invalid defined input', function() {
-        const args = [true, false, {}, init, x => x, /x/];
+        const args = [NaN, true, false, {}, init, x => x, /x/];
         args.map(arg => expect(init(arg)).an('array').eql([]));
     });
     

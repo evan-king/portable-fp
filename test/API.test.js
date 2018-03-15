@@ -37,7 +37,6 @@ const args = [null, undefined, false, true, '', 'a', '0xFF', 5, String, /x/, x =
 
 with(R) {
 
-// defaultTo
 // head
 // is
 // last
