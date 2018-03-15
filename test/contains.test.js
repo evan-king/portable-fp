@@ -37,6 +37,7 @@ describe('contains :: a → [a] → Boolean', function() {
     it('identifies whether string is in string', function() {
         expect(contains('', '')).true;
         expect(contains('', 'blah')).true;
+        expect(contains('blah', 'blah')).true;
         expect(contains('blah', 'oblahvious')).true;
         expect(contains('blah', 'oblivious')).false;
     });
