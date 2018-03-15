@@ -37,15 +37,12 @@ const args = [null, undefined, false, true, '', 'a', '0xFF', 5, String, /x/, x =
 
 with(R) {
 
-// head
 // is
-// last
 // match
 // pick
 // prop
 // range
 // reverse
-// tail
 
 
 }

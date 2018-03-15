@@ -36,7 +36,8 @@ describe('init :: [a] → [a]', function() {
     });
     
     // Known divergence from Ramda behavior (these tests would fail):
-    //  - expect(init(String)).eql('');
+    //  - expect(init(String)).eql('0'); // []
+    // Instead, portable-fp is consistent with head and last
     
     it('returns empty array on (some) invalid defined input', function() {
         const args = [NaN, true, false, {}, init, x => x, /x/];
@@ -44,7 +45,5 @@ describe('init :: [a] → [a]', function() {
     });
     
     it('has arity of 1', () => expect(init).lengthOf(1));
-    
-    it('is curried', testCurrying(init, ['blah'], 'bla'));
     
 });
