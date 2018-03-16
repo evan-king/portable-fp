@@ -1,14 +1,20 @@
 const
-    R = require('portable-fp'),
-    { testCurrying, sparseList, packedList, varietyList, varietyListCopy, varietyObj, varietyObjCopy } = require('./util'),
+    FP = require('portable-fp'),
+    {
+        testCurrying,
+        sparseList,
+        packedList,
+        varietyList,
+        varietyListCopy,
+        varietyObj,
+        varietyObjCopy
+    } = require('./util'),
     { expect } = require('chai');
-
-
 
 describe('API', function() {
     
     it('names all functions to match their API names', function() {
-        Object.keys(R).map(key => expect(R[key].name).eql(key));
+        Object.keys(FP).map(key => expect(FP[key].name).eql(key));
     });
     
     it('is immutable', function() {
@@ -23,8 +29,8 @@ describe('API', function() {
             expect(obj._blah, name).eql(undefined);
         }
         
-        mutate(R, 'API');
-        R.mapObjIndexed(mutate, R);
+        mutate(FP, 'API');
+        FP.mapObjIndexed(mutate, FP);
     });
     
 });
@@ -35,9 +41,8 @@ describe('dist', function() {
 
 const args = [null, undefined, false, true, '', 'a', '0xFF', 5, String, /x/, x => x, [], {}];
 
-with(R) {
+with(FP) {
 
-// is
 // match
 // pick
 // prop

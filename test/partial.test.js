@@ -3,7 +3,6 @@ const
     { testCurrying } = require('./util'),
     { expect } = require('chai');
 
-
 describe('partial :: (Number → a) → Number → [a]', function() {
     const context = {x: 1};
     function args(a, b, c, d = 0) { return {ctx: this, args: [].slice.call(arguments) }; }
