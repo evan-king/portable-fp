@@ -8,7 +8,7 @@ describe('filter :: Filterable f => (a → Boolean) → f a → f a', function()
     
     it('filters arrays', function() {
         expect(filter(t, [])).eql([]);
-        expect(filter(v => v !== undefined, sparseList)).eql(packedList);
+        expect(filter(x => true, sparseList)).eql(packedList);
         expect(filter(f, [0, 1, 2, 3])).eql([]);
         expect(filter(x => x > 1, [0, 1, 2, 3])).eql([2, 3]);
     });

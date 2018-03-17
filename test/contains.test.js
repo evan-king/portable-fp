@@ -22,7 +22,8 @@ describe('contains :: a → [a] → Boolean', function() {
     });
     
     it('handles sparse arrays (does not false positive matching undefined', function() {
-        expect(contains(undefined, sparseList)).false;
+        const arr = [1, 2, 3]; arr[7] = 10;
+        expect(contains(undefined, arr)).false;
     });
     
     it('identifies whether element is in object', function() {

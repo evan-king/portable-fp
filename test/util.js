@@ -101,14 +101,14 @@ describe.skip('[curry test generator]', function() {
 });
 
 function sparse() {
-    const arr = [1, 2, 3];
+    const arr = [1, undefined, 3];
     arr[5] = 5;
     arr[9] = 9;
     return arr;
 }
 
 function pack(list) {
-    return [1, 2, 3, 5, 9];
+    return [1, undefined, 3, 5, 9];
 }
 
 // The set of inputs both distinct amongst themselves and matcheable by equals,
@@ -151,7 +151,7 @@ const dup = {
 exports.testCurrying = testCurrying;
 exports.sparseList = Object.freeze(sparse());
 exports.packedList = Object.freeze(pack(exports.sparseList));
-exports.varietyObj = variety;
-exports.varietyObjCopy = dup;
-exports.varietyList = values(variety);
-exports.varietyListCopy = values(dup);
+exports.varietyObj = Object.freeze(variety);
+exports.varietyObjCopy = Object.freeze(dup);
+exports.varietyList = Object.freeze(values(variety));
+exports.varietyListCopy = Object.freeze(values(dup));
