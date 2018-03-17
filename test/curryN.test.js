@@ -30,7 +30,6 @@ describe('curryN :: Number → (* → a) → (* → a)', function() {
         it('still receives any additional arguments', function() {
             times(function(idx) {
                 if(idx < 1) return;
-                console.log(idx);
                 const countC = curryN(idx, count);
                 expect(countC.apply(null, args.slice(0, idx+1))).a('number').eql(idx+1);
                 expect(countC.apply(null, args)).a('number').eql(args.length);

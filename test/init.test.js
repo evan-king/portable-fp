@@ -1,6 +1,5 @@
 const
     { init } = require('portable-fp'),
-    { testCurrying } = require('./util'),
     { expect } = require('chai');
 
 describe('init :: [a] → [a]', function() {
@@ -39,7 +38,7 @@ describe('init :: [a] → [a]', function() {
     //  - expect(init(String)).eql('0'); // []
     // Instead, portable-fp is consistent with head and last
     
-    it('returns empty array on (some) invalid defined input', function() {
+    it('returns empty array on other invalid input', function() {
         const args = [NaN, true, false, {}, init, x => x, /x/];
         args.map(arg => expect(init(arg)).an('array').eql([]));
     });

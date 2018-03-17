@@ -46,8 +46,6 @@ with(FP) {
 // match
 // pick
 // prop
-// range
-// reverse
 
 
 }
