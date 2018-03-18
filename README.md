@@ -33,7 +33,7 @@ use.
 
 |     | Ramda | Portable-FP | Some gist of a single function |
 | --- | --- | --- | --- |
-| **Size** | ~270kb, ~45kb minified | ~5.4kb, ~2.7kb minified | ~100 bytes |
+| **Size** | ~270kb, ~45kb minified | ~6kb, ~3kb minified | ~100 bytes |
 | **Curried** | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | **Robust API** | :heavy_check_mark: |  -  | :x: |
 | **Optimal Performance** | :x: | :x: | :x: |
