@@ -14,7 +14,7 @@
     "postcoverage": "istanbul check-coverage --statements $npm_package_config_min_coverage --branches $npm_package_config_min_coverage --lines $npm_package_config_min_coverage"
   },
   "config": {
-    "min_coverage": 80
+    "min_coverage": 100
   },
   "repository": {
     "type": "git",
